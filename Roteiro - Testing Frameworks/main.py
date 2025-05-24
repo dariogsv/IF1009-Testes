@@ -13,7 +13,9 @@ def sqrt(x: int) -> float:
 PENDING = 0
 STORED = 20
 SALLED = 0
+
 def buy(qty: int) -> int:
+    global STORED, PENDING, SALLED
     if qty > STORED:
         raise Exception("No items in storage")
     STORED -= qty
@@ -21,6 +23,7 @@ def buy(qty: int) -> int:
     return STORED, PENDING, SALLED
 
 def liquidate(qty: int) -> int:
+    global STORED, PENDING, SALLED
     if qty > PENDING:
         raise Exception("Not enough items reserved")
     PENDING -= qty
@@ -28,6 +31,7 @@ def liquidate(qty: int) -> int:
     return STORED, PENDING, SALLED
 
 def reserve(qty: int) -> int:
+    global STORED, PENDING, SALLED
     if qty > STORED:
         raise Exception("Not enough items in storage")
     STORED -= qty
@@ -35,6 +39,7 @@ def reserve(qty: int) -> int:
     return STORED, PENDING, SALLED
 
 def store(qty: int) -> int:
+    global STORED, PENDING, SALLED
     STORED += qty
     return STORED, PENDING, SALLED
 
